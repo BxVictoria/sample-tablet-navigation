@@ -1,4 +1,4 @@
-package ru.dialog.tabletfragmentnavigation.navigation
+package ru.dialog.tabletfragmentnavigation.ui
 
 import android.graphics.Color
 import android.view.View

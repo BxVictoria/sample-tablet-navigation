@@ -8,8 +8,8 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import im.dlg.core_ui.component.swipe_back.SwipeBackLayout.OnFinishListener
-import ru.dialog.tabletfragmentnavigation.BaseFragment
 import ru.dialog.tabletfragmentnavigation.R
+import ru.dialog.tabletfragmentnavigation.ui.BaseFragment
 
 
 abstract class SwipeBackFragment : BaseFragment(), SwipeBackLayout.SwipeBackListener {

@@ -1,14 +1,13 @@
 package ru.dialog.tabletfragmentnavigation.navigation
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import ru.dialog.tabletfragmentnavigation.BaseFragment
-import ru.dialog.tabletfragmentnavigation.FragmentAnimationUtils
+import ru.dialog.tabletfragmentnavigation.ui.BaseFragment
+import ru.dialog.tabletfragmentnavigation.util.FragmentAnimationUtils
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 import ru.terrakok.cicerone.commands.Command
@@ -50,6 +49,10 @@ open class AppNavigator(
                 val newCommand = Replace(command.screen)
                 super.applyCommand(newCommand)
             }
+            is ForwardSingleTop -> {
+                val newCommand = ForwardSingleTop(command.screen)
+                applyForwardSingleTopCommand(newCommand)
+            }
             else -> super.applyCommand(command)
         }
     }
@@ -84,6 +87,15 @@ open class AppNavigator(
             is AppScreen -> activitySlideForward(command)
             else -> super.applyCommand(command)
         }
+    }
+
+    private fun applyForwardSingleTopCommand(command: ForwardSingleTop) {
+        if (command.screen is SupportAppScreen) {
+            if (fragmentManager.fragments.lastOrNull()?.javaClass == command.screen.fragment?.javaClass) {
+                return
+            }
+        }
+        applyForwardCommand(Forward(command.screen))
     }
 
     private fun executeForward(command: Forward) {
@@ -126,27 +138,6 @@ open class AppNavigator(
             activity.startActivity(activityIntent, options)
         } else {
             unexistingActivity(screen, activityIntent)
-        }
-    }
-
-    class ProxyAppScreen(
-        private val screen: AppScreen,
-        private val setup: (BaseFragment) -> Unit
-    ) : AppScreen() {
-        override fun getScreenKey(): String {
-            return screen.getScreenKey()
-        }
-
-        override fun getActivityIntent(context: Context): Intent? {
-            return screen.getActivityIntent(context)
-        }
-
-        override fun getFragment(): Fragment? {
-            return screen.getFragment().also { if (it is BaseFragment) setup(it) }
-        }
-
-        override fun getSlideFragment(): SlideFragment? {
-            return screen.getSlideFragment().also { if (it is BaseFragment) setup(it) }
         }
     }
 }

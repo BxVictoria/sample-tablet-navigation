@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/vSlidrContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -64,13 +63,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fragment C"
-            app:layout_constraintBottom_toTopOf="@+id/btnFragmentD"
+            app:layout_constraintBottom_toTopOf="@+id/btnFragmentDialog"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnFragmentB" />
 
         <Button
-            android:id="@+id/btnFragmentD"
+            android:id="@+id/btnFragmentDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fragment D"
@@ -87,7 +86,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnFragmentD" />
+            app:layout_constraintTop_toBottomOf="@+id/btnFragmentDialog" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

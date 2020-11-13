@@ -1,4 +1,4 @@
-package ru.dialog.tabletfragmentnavigation
+package ru.dialog.tabletfragmentnavigation.ui
 
 import android.content.Context
 import android.os.Bundle

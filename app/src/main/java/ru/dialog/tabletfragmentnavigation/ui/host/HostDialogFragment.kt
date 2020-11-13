@@ -1,8 +1,9 @@
-package ru.dialog.tabletfragmentnavigation
+package ru.dialog.tabletfragmentnavigation.ui.host
 
 import android.os.Bundle
-import ru.dialog.tabletfragmentnavigation.navigation.AppNavigator
+import ru.dialog.tabletfragmentnavigation.R
 import ru.dialog.tabletfragmentnavigation.navigation.AppScreen
+import ru.dialog.tabletfragmentnavigation.ui.BaseDialogFragment
 
 
 class HostDialogFragment : BaseDialogFragment() {

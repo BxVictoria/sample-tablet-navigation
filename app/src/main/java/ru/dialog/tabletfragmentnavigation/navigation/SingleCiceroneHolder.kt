@@ -3,10 +3,10 @@ package ru.dialog.tabletfragmentnavigation.navigation
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.NavigatorHolder
 
-enum class CiceroneHolder {
+enum class SingleCiceroneHolder {
     INSTANCE;
 
-    private val cicerone = Cicerone.create(DialogRouter())
+    private val cicerone = Cicerone.create(DialogRouter(TabletPosition.FULL))
 
     fun getNavigatorHolder(): NavigatorHolder {
         return cicerone.navigatorHolder

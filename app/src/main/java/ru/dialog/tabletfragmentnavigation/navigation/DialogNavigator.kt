@@ -3,18 +3,16 @@ package ru.dialog.tabletfragmentnavigation.navigation
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import ru.dialog.tabletfragmentnavigation.HostDialogFragment
+import ru.dialog.tabletfragmentnavigation.ui.host.HostDialogFragment
 import ru.terrakok.cicerone.commands.Back
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
-import java.lang.ref.WeakReference
 
 
 class DialogNavigator(
     activity: FragmentActivity,
-    containerId: Int,
     fragmentManager: FragmentManager? = null,
-) : AppNavigator(activity, containerId, fragmentManager ?: activity.supportFragmentManager) {
+) : AppNavigator(activity, 0, fragmentManager ?: activity.supportFragmentManager) {
 
 
     override fun applyCommand(command: Command) {

@@ -1,6 +1,5 @@
 package ru.dialog.tabletfragmentnavigation.navigation
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.Screen
@@ -9,10 +8,9 @@ import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
 import java.util.*
 
-class DialogRouter : Router() {
+open class DialogRouter(val tabletPosition: TabletPosition) : Router() {
     private val screenStack = Stack<Screen>()
     private val topScreenMutableLiveData = MutableLiveData<Screen>()
-    fun observeTopScreenLiveData(): LiveData<Screen> = topScreenMutableLiveData
 
     fun newChainFrom(backTo: Screen, vararg screen: Screen) {
         val commandList = mutableListOf<Command>()
@@ -75,6 +73,12 @@ class DialogRouter : Router() {
         topScreenMutableLiveData.postValue(screen)
     }
 
+    open fun navigateToSingleTop(screen: Screen) {
+        executeCommands(ForwardSingleTop(screen))
+        screenStack.add(screen)
+        topScreenMutableLiveData.postValue(screen)
+    }
+
     override fun finishChain() {
         super.finishChain()
         if (screenStack.isNotEmpty()) {
@@ -99,6 +103,10 @@ class DialogRouter : Router() {
         }
         screenStack.push(screen)
         topScreenMutableLiveData.postValue(screen)
+    }
+
+    open fun openPanels(vararg screens: AppScreen) {
+        newChain(*screens)
     }
 
 

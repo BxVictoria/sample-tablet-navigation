@@ -1,4 +1,4 @@
-package ru.dialog.tabletfragmentnavigation
+package ru.dialog.tabletfragmentnavigation.util
 
 import androidx.fragment.app.FragmentTransaction
 
